@@ -4,28 +4,23 @@ License: GNU GPL 2.0
 """
 
 import os
-from warnings import warn
 
-from loguru import logger
 import anndata
 import cv2
 import numpy as np
 import pandas as pd
 import pathml.core
 import pathml.core.slide_data
-from pathml.utils import (
-    RGB_to_GREY,
-    RGB_to_HSI,
-    RGB_to_HSV,
-    RGB_to_OD,
-    normalize_matrix_cols,
-)
-from skimage import restoration
-from skimage.exposure import equalize_adapthist, equalize_hist, rescale_intensity
-from skimage.measure import regionprops_table
 import torch
-
+from loguru import logger
 from pathml.ml.hovernet import HoVerNet, post_process_batch_hovernet
+from pathml.utils import (RGB_to_GREY, RGB_to_HSI, RGB_to_HSV, RGB_to_OD,
+                          normalize_matrix_cols)
+from skimage import restoration
+from skimage.exposure import (equalize_adapthist, equalize_hist,
+                              rescale_intensity)
+from skimage.measure import regionprops_table
+
 
 # Base class
 class Transform:
@@ -1002,7 +997,7 @@ class NucleusDetectionHE(Transform):
 
 class HoVerNetSegmentation(Transform):
     """
-    Apply HoVeRNet nuclear segmentation and classification to H&E images.
+    Apply HoVerNet nuclear segmentation and classification to H&E images.
     Input images must be formatted with XYC dimension order.
 
     .. note::
@@ -1041,7 +1036,7 @@ class HoVerNetSegmentation(Transform):
         hovernet = torch.nn.DataParallel(hovernet)
 
         if self.use_gpu:
-            device = torch.device("cuda:0")
+            device = torch.device("cuda")
             hovernet.to(device)
         else:
             device = torch.device("cpu")

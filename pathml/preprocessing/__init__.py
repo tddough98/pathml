@@ -8,6 +8,7 @@ from .pipeline import Pipeline
 # TODO: standardize transform names to be all verbs or all nouns
 # e.g. NucleusDetection vs. DetectNuclei
 # e.g. SegmentMIF vs. MIFSegmentation/SegmentationMIF
+from .nuclear_features import NuclearFeatures
 from .transforms import (
     BinaryThreshold,
     BoxBlur,

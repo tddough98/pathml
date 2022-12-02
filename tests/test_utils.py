@@ -29,7 +29,7 @@ from pathml.utils import (
 
 
 @pytest.mark.parametrize(
-    "test_input,expected", [("10 gb", 10 ** 10), ("1.17 mB", 1.17e6), ("0.89 KB", 890)]
+    "test_input,expected", [("10 gb", 10**10), ("1.17 mB", 1.17e6), ("0.89 KB", 890)]
 )
 def test_parse_file_sizes(test_input, expected):
     assert parse_file_size(test_input) == expected

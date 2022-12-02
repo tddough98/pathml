@@ -51,7 +51,7 @@ class h5pathManager:
                             str(self.countspath.name) + "/tmpfile.h5ad"
                         )
             # Default to float16 if there are no tiles
-            self.dtype = get_tiles_dtype(h5path) or np.dtype('float16')
+            self.dtype = get_tiles_dtype(h5path) or np.dtype("float16")
 
         else:
             assert slidedata, f"must pass slidedata object to create h5path"
